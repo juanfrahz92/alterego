@@ -1,0 +1,163 @@
+@import "tailwindcss";
+
+/*
+  ============================================================================
+  Alterego Academia — Sistema de diseño
+  ----------------------------------------------------------------------------
+  Marca: preparación de la oposición a la Guardia Civil. Voz cercana,
+  comprometida, honesta y profesional. Nada de humo.
+
+  Paleta (brandboard):
+    Verde noche  #192B18   Verde bosque #2D4F2B   Verde salvia #718A58
+    Oro          #E0B93F   Crema        #FFF2CB
+
+  Uso del color:
+    - Fondo base: blanco cálido / crema muy diluido.
+    - Tinta: verde noche (titulares y cuerpo).
+    - Verde bosque / salvia: apoyos, iconografía, hairlines vivas.
+    - Oro: acento puntual (CTA, subrayados, detalles). Se usa con mesura.
+    - Verde noche: fondo de secciones invertidas, con texto crema.
+  Tipografía: Montserrat en todo el sitio. Jerarquía por peso, espacio e
+  interletrado, con titulares contenidos (estética seria, no estridente).
+  ============================================================================
+*/
+
+@theme {
+  /* ---- Escala de marca: verdes ------------------------------------------ */
+  --color-verde-noche: #192b18; /* tinta / fondo invertido */
+  --color-verde-bosque: #2d4f2b; /* apoyo oscuro */
+  --color-verde-salvia: #718a58; /* apoyo medio / iconografía */
+  --color-verde-100: #e7ecdf; /* tinte muy claro (superficies) */
+  --color-verde-200: #cdd8bf; /* hairlines vivas */
+  --color-verde-600: #43603e; /* texto secundario sobre claro */
+
+  /* ---- Oro y crema ------------------------------------------------------ */
+  --color-oro: #e0b93f;
+  --color-oro-oscuro: #b7902a; /* oro con contraste AA sobre crema */
+  --color-crema: #fff2cb;
+  --color-crema-suave: #fbf6e9; /* fondo cálido de sección */
+
+  /* ---- Neutros cálidos -------------------------------------------------- */
+  --color-blanco: #ffffff; /* fondo base: blanco puro */
+  --color-tinta-suave: #5c6558; /* gris verdoso para meta */
+
+  /* ---- Tokens semánticos ------------------------------------------------ */
+  --color-background: var(--color-blanco);
+  --color-foreground: var(--color-verde-noche);
+  --color-muted: var(--color-tinta-suave); /* texto secundario / meta */
+  --color-faint: var(--color-verde-salvia); /* etiquetas / overlines */
+  --color-hairline: var(--color-verde-200); /* líneas divisorias 1px */
+  --color-surface: var(--color-crema-suave); /* fondos sutiles */
+  --color-accent: var(--color-oro); /* acento (CTA, detalles) */
+  --color-accent-ink: var(--color-oro-oscuro); /* acento con buen contraste */
+  --color-inverse: var(--color-crema); /* texto sobre verde noche */
+  --color-inverse-bg: var(--color-verde-noche); /* fondo secciones oscuras */
+
+  /* ---- Tipografía ------------------------------------------------------- */
+  --font-sans: var(--font-montserrat), ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", sans-serif;
+
+  /*
+    Escala tipográfica editorial y contenida.
+    Cada token: tamaño + interlineado + interletrado + peso.
+    Las grandes usan clamp() con techo moderado.
+  */
+
+  /* Overline / eyebrow — 12px, mayúsculas, muy tracked */
+  --text-overline: 0.75rem;
+  --text-overline--line-height: 1.4;
+  --text-overline--letter-spacing: 0.18em;
+  --text-overline--font-weight: 600;
+
+  /* Meta / caption — 14px */
+  --text-meta: 0.875rem;
+  --text-meta--line-height: 1.5;
+  --text-meta--letter-spacing: 0em;
+
+  /* Cuerpo — 17px, interlineado generoso */
+  --text-body: 1.0625rem;
+  --text-body--line-height: 1.7;
+
+  /* Entradilla / lead — 20px */
+  --text-lead: 1.25rem;
+  --text-lead--line-height: 1.6;
+  --text-lead--font-weight: 400;
+
+  /* h4 — 17px, semibold */
+  --text-h4: 1.0625rem;
+  --text-h4--line-height: 1.4;
+  --text-h4--font-weight: 600;
+
+  /* h3 — 21px */
+  --text-h3: 1.3125rem;
+  --text-h3--line-height: 1.35;
+  --text-h3--font-weight: 600;
+
+  /* h2 — 26 → 32px */
+  --text-h2: clamp(1.625rem, 1.4rem + 1vw, 2rem);
+  --text-h2--line-height: 1.2;
+  --text-h2--letter-spacing: -0.01em;
+  --text-h2--font-weight: 600;
+
+  /* h1 — 32 → 42px */
+  --text-h1: clamp(2rem, 1.6rem + 1.8vw, 2.625rem);
+  --text-h1--line-height: 1.12;
+  --text-h1--letter-spacing: -0.02em;
+  --text-h1--font-weight: 700;
+
+  /* Display — 38 → 54px, frase de posicionamiento (hero) */
+  --text-display: clamp(2.375rem, 1.7rem + 3vw, 3.375rem);
+  --text-display--line-height: 1.08;
+  --text-display--letter-spacing: -0.025em;
+  --text-display--font-weight: 700;
+
+  /* ---- Radios: suaves pero sobrios -------------------------------------- */
+  --radius-none: 0px;
+  --radius-sm: 2px;
+  --radius-md: 6px;
+  --radius-lg: 12px;
+  --radius-full: 9999px;
+
+  /* ---- Curva de easing sobria ------------------------------------------- */
+  --ease-editorial: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-synthesis-weight: none; /* sin negritas falsas */
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Selección de texto en verde noche */
+  ::selection {
+    background-color: var(--color-verde-noche);
+    color: var(--color-crema);
+  }
+
+  /* Foco visible por teclado en todo el sitio (accesibilidad) */
+  :focus-visible {
+    outline: 2px solid var(--color-verde-bosque);
+    outline-offset: 2px;
+  }
+
+  /* Respeta prefers-reduced-motion */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+}

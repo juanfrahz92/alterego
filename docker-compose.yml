@@ -1,0 +1,27 @@
+# Entorno de desarrollo local para la web de Alterego Academia.
+# Arranca Next.js con hot-reload dentro de un contenedor.
+#
+#   docker compose up         -> levanta la web en http://localhost:3003
+#   docker compose up --build -> reconstruye la imagen (tras cambiar dependencias)
+#   docker compose down       -> para y limpia los contenedores
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: alterego-web
+    ports:
+      # Host 3003 -> contenedor 3000 (3000/3001/3002 los usan otros proyectos).
+      - "3003:3000"
+    volumes:
+      # Código fuente montado para hot-reload.
+      - .:/app
+      # Volúmenes anónimos: evitan que el host pise node_modules y .next del contenedor.
+      - /app/node_modules
+      - /app/.next
+    environment:
+      - NODE_ENV=development
+      # Necesario para que el file-watching funcione en bind mounts (Windows/Docker Desktop).
+      - WATCHPACK_POLLING=true
+    restart: unless-stopped
