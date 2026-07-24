@@ -5,6 +5,7 @@ import { Overline } from "@/components/ui/Overline";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 import { HeroCarousel } from "@/components/layout/HeroCarousel";
+import { ReviewsCarousel } from "@/components/layout/ReviewsCarousel";
 import { CtaSection } from "@/components/layout/CtaSection";
 import { SITE } from "@/config/site";
 
@@ -345,6 +346,17 @@ export default function HomePage() {
             </Reveal>
           ))}
         </div>
+      </Section>
+
+      {/* ---- Reseñas de alumnos ------------------------------------------ */}
+      <Section>
+        <Reveal className="text-center">
+          <Overline className="justify-center">Reseñas</Overline>
+          <h2 className="mt-5 text-h1 text-balance text-foreground">
+            Lo que dicen quienes ya se prepararon con nosotros.
+          </h2>
+        </Reveal>
+        <ReviewsCarousel />
       </Section>
 
       <CtaSection
