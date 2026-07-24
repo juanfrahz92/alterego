@@ -206,9 +206,8 @@ export default function HomePage() {
               </p>
               <div className="mt-6 flex items-center justify-between gap-4">
                 <p className="flex items-baseline gap-1.5">
-                  <span className="text-meta text-muted">desde</span>
                   <span className="text-h3 font-bold tabular-nums text-foreground">
-                    19,90 €
+                    79,99 €
                   </span>
                   <span className="text-meta text-muted">/mes</span>
                 </p>

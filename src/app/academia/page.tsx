@@ -34,7 +34,7 @@ const PRODUCTOS = [
   },
   {
     nombre: "Alterego Online Completo",
-    precio: "79,90 €",
+    precio: "79,99 €",
     periodo: "/mes",
     imagen: "/academia/online.jpg",
     descripcion:

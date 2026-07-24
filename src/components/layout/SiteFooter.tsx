@@ -17,15 +17,13 @@ export function SiteFooter() {
         <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1.2fr]">
           {/* Marca + claim */}
           <div className="max-w-sm">
-            <span className="inline-flex rounded-lg bg-crema-suave p-5">
-              <Image
-                src="/logos/footer-logo.png"
-                alt="Alterego Academia"
-                width={1734}
-                height={826}
-                className="h-20 w-auto md:h-24"
-              />
-            </span>
+            <Image
+              src="/logos/footer-logo2-crema.png"
+              alt="Alterego Academia"
+              width={1734}
+              height={826}
+              className="h-24 w-auto md:h-28"
+            />
             <p className="mt-6 text-body text-crema/80">{SITE.claim}</p>
             <Link
               href="/contacto"

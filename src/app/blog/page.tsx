@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { Section } from "@/components/ui/Section";
 import { Reveal } from "@/components/ui/Reveal";
@@ -9,7 +10,7 @@ import { ARTICLES } from "@/data/articles";
 export const metadata: Metadata = {
   title: "Blog",
   description:
-    "Artículos claros y útiles sobre la oposición a la Guardia Civil: la base jurídica, el método de estudio y las pruebas, explicados sin humo.",
+    "Actualidad y claves de la oposición a la Guardia Civil, explicadas desde Alterego.",
 };
 
 export default function BlogPage() {
@@ -17,37 +18,48 @@ export default function BlogPage() {
     <main>
       <PageHeader
         overline="Blog"
-        title="Aprende, resuelve dudas y prepárate mejor."
-        lead="Conocimiento real explicado con claridad. Sin humo y sin promesas fáciles: contenido pensado para orientarte y ayudarte a decidir con información fiable."
+        title="Actualidad de la oposición a la Guardia Civil."
       />
 
       <Section>
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-8">
           {ARTICLES.map((a, i) => (
             <Reveal
               key={a.slug}
-              delay={(i % 3) * 80}
+              delay={i * 80}
               as="article"
-              className="group relative flex flex-col rounded-lg border border-hairline bg-background p-8 transition-shadow duration-300 ease-editorial hover:shadow-md"
+              className="group relative grid overflow-hidden rounded-lg border border-hairline bg-background transition-shadow duration-300 ease-editorial hover:shadow-md lg:grid-cols-2"
             >
-              <div className="flex items-center justify-between gap-3">
-                <span className="text-overline uppercase text-accent-ink">
-                  {a.categoria}
-                </span>
-                <span className="text-meta text-faint">{a.lectura}</span>
+              <div className="relative aspect-[16/10] overflow-hidden lg:aspect-auto">
+                <Image
+                  src={a.imagen}
+                  alt={a.imagenAlt}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover transition-transform duration-500 ease-editorial group-hover:scale-[1.03]"
+                />
               </div>
-              <h2 className="mt-4 text-h3 text-balance text-foreground">
-                <Link
-                  href={`/blog/${a.slug}`}
-                  className="transition-colors duration-300 ease-editorial group-hover:text-verde-bosque after:absolute after:inset-0"
-                >
-                  {a.titulo}
-                </Link>
-              </h2>
-              <p className="mt-3 flex-1 text-body text-muted">{a.extracto}</p>
-              <span className="mt-6 inline-flex items-center gap-1.5 text-meta font-semibold text-accent-ink">
-                Leer artículo →
-              </span>
+              <div className="flex flex-col justify-center p-8 md:p-12">
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-overline uppercase">
+                  <span className="text-accent-ink">{a.categoria}</span>
+                  <span aria-hidden="true" className="text-hairline">·</span>
+                  <span className="text-faint">{a.fecha}</span>
+                  <span aria-hidden="true" className="text-hairline">·</span>
+                  <span className="text-faint">{a.lectura}</span>
+                </div>
+                <h2 className="mt-4 text-h2 text-balance text-foreground">
+                  <Link
+                    href={`/blog/${a.slug}`}
+                    className="transition-colors duration-300 ease-editorial group-hover:text-verde-bosque after:absolute after:inset-0"
+                  >
+                    {a.titulo}
+                  </Link>
+                </h2>
+                <p className="mt-4 text-body text-muted">{a.extracto}</p>
+                <span className="mt-6 inline-flex items-center gap-1.5 text-meta font-semibold text-accent-ink">
+                  Leer artículo →
+                </span>
+              </div>
             </Reveal>
           ))}
         </div>

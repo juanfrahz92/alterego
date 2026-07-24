@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Container } from "@/components/ui/Container";
@@ -68,6 +69,22 @@ export default async function ArticlePage({
           </div>
         </Container>
       </section>
+
+      {/* Imagen de portada */}
+      <Container className="-mt-8 md:-mt-12">
+        <Reveal>
+          <div className="relative aspect-[16/9] overflow-hidden rounded-lg border border-hairline shadow-sm">
+            <Image
+              src={article.imagen}
+              alt={article.imagenAlt}
+              fill
+              priority
+              sizes="(max-width: 768px) 100vw, 768px"
+              className="object-cover"
+            />
+          </div>
+        </Reveal>
+      </Container>
 
       {/* Cuerpo del artículo */}
       <Section>
